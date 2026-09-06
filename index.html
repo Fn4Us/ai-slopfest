@@ -309,228 +309,15 @@
     </div>
   </div>
 
+<script src="stories.js"></script>
 <script>
-  const SLOTS = {
-    drink: ["an oat milk latte", "a cold brew", "a matcha latte", "a chai latte", "an iced americano", "a hot chocolate"],
-    snack: ["a croissant", "a blueberry muffin", "a cinnamon roll", "a bagel with cream cheese", "a scone"],
-    dayLooking: ["Tuesday", "weekend", "Wednesday", "Friday", "morning"],
-    activity: ["trivia night", "a movie", "board games", "something outdoorsy", "brunch"],
-    stressor: ["work deadlines", "moving apartments", "wedding planning", "a big job hunt", "training for a race"],
-    newActivity: ["pottery", "rock climbing", "learning guitar", "running", "cooking classes"],
-    hobby: ["pottery", "trivia", "rock climbing", "running", "painting", "chess"],
-    hangout: ["coffee", "lunch", "drinks", "dinner", "a proper catch-up"],
-    newsItem: ["that new restaurant downtown", "Jamie's big move", "the reunion everyone's planning", "that show everyone's binging", "the new place on Main Street"],
-    priorJob: ["marketing", "retail management", "freelance design", "customer support", "teaching"],
-    reasonForJob: ["the team culture", "the mission", "the flexibility", "the growth opportunities", "the people I met interviewing"],
-    officeHazard: ["the third-floor printer", "the coffee after 3pm", "reply-all emails", "the break room microwave", "the office playlist"],
-    chore: ["dishes", "laundry", "vacuuming", "recycling", "grocery shopping"],
-    chore2: ["walking the dog", "answering some emails", "a nap", "returning some calls", "finishing my coffee"],
-    timeSlot: ["Friday", "Saturday", "Sunday afternoon", "tonight", "this weekend"],
-    thirdParty: ["Jordan", "Alex", "Sam", "Priya", "Marcus"],
-    snackFood: ["pizza", "cookies", "chips", "ice cream", "cake"],
-    meetDay: ["Saturday", "Sunday", "Friday night", "tomorrow", "next weekend"],
-    meetTime: ["7", "6:30", "8ish", "5:45", "noon"],
-    weekday: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-    careerFocus: ["strategic", "creative", "hands-on", "collaborative", "leadership"],
-    trait: ["work well under pressure", "love solving problems", "pick things up quickly", "pay attention to detail", "work well with a team", "stay calm when things get hectic"],
-    growthArea: ["delegating more", "public speaking", "saying no to extra projects", "getting better at documentation", "not micromanaging myself"],
-    timeframe: ["six months", "the first year", "90 days", "the first quarter", "a year"],
-    successMetric: ["leading your own projects", "fully ramped up with the team", "contributing to key decisions", "mentoring newer hires", "owning a full workstream"],
-    concernTopic: ["the team's current workload", "how remote work is handled", "the timeline for this role", "the team structure", "growth opportunities here"],
-    field: ["marketing", "software", "teaching", "healthcare", "design", "finance"],
-    relative: ["Your cousin", "Your uncle", "Your brother", "Your aunt", "Your grandma"],
-    occasion: ["the holidays", "Thanksgiving", "the family reunion", "my birthday", "the Fourth of July"],
-    dish: ["grilled salmon", "mushroom risotto", "veggie burger", "pad thai", "roasted chicken"]
-  };
-
-  const scenarios = [
-    { context: "Coffee shop regular", lines: [
-        { speaker: "Barista", text: "Hey, {name}! The usual today, or feeling adventurous?" },
-        { speaker: "You", text: "Let's go adventurous — could I get {drink}?" },
-        { speaker: "Barista", text: "Ooh, I like it. Anything to eat with that?" },
-        { speaker: "You", text: "Just {snack}, thanks." },
-        { speaker: "Barista", text: "Coming right up. How's your {dayLooking} looking?" },
-        { speaker: "You", text: "Busy, honestly. Trying to squeeze in {activity} before it gets dark." },
-        { speaker: "Barista", text: "Say no more, this'll help. You know, {name}, you're in here so much I should start a tab." },
-        { speaker: "You", text: "Careful what you offer — I might take you up on it." },
-        { speaker: "Barista", text: "Ha! I mean it though. Regulars get perks eventually." },
-        { speaker: "You", text: "Is that your way of saying I'm here too much?" },
-        { speaker: "Barista", text: "Not at all, {name}. I look forward to it, honestly." },
-        { speaker: "You", text: "That's sweet. Also slightly concerning for my bank account." },
-        { speaker: "Barista", text: "Fair. Alright, {drink} — all set." },
-        { speaker: "You", text: "Perfect timing. Smells amazing." },
-        { speaker: "Barista", text: "Made it a little stronger today. Figured you could use it." },
-        { speaker: "You", text: "You know me well. Thank you." },
-        { speaker: "Barista", text: "Anytime, {name}. Good luck with the rest of your {dayLooking}." },
-        { speaker: "You", text: "Will do. See you tomorrow, probably." }
-    ]},
-    { context: "A blind date", lines: [
-        { speaker: "Date", text: "{name}? I thought that might be you — sorry, I'm always nervous I'll wave at the wrong person." },
-        { speaker: "You", text: "Ha, no, you got the right one. I'm glad it's you." },
-        { speaker: "Date", text: "Good, because I already told the host we were meeting someone. Would've been awkward." },
-        { speaker: "You", text: "Very. Good save either way." },
-        { speaker: "Date", text: "So, {name}, how's your week been?" },
-        { speaker: "You", text: "Honestly kind of a whirlwind. I spent most of it on {stressor}." },
-        { speaker: "Date", text: "That sounds like a lot. Did it turn out okay?" },
-        { speaker: "You", text: "Mostly, yeah. I'm just glad to sit down now." },
-        { speaker: "Date", text: "Same. Can I get you {drink} or something stronger?" },
-        { speaker: "You", text: "I'd love {drink}, actually." },
-        { speaker: "Date", text: "Good choice. So tell me something about you that's not on your profile." },
-        { speaker: "You", text: "Okay... I'm weirdly competitive about {hobby}. It's a whole thing." },
-        { speaker: "Date", text: "That's amazing. I need to see this in action sometime." },
-        { speaker: "You", text: "Careful what you wish for — I don't lose gracefully." },
-        { speaker: "Date", text: "Noted. I respect that, {name}." },
-        { speaker: "You", text: "Good. What about you — hidden talents, embarrassing hobbies?" },
-        { speaker: "Date", text: "I make a genuinely excellent {dish}. Ask anyone." },
-        { speaker: "You", text: "Bold claim. I'll need proof eventually." }
-    ]},
-    { context: "Catching up with an old friend", lines: [
-        { speaker: "Friend", text: "{name}! Oh my gosh, it has been way too long." },
-        { speaker: "You", text: "It really has. You look great, by the way." },
-        { speaker: "Friend", text: "Stop, so do you. Come here, sit, tell me everything." },
-        { speaker: "You", text: "Where do I even start... things have actually been pretty good." },
-        { speaker: "Friend", text: "Yeah? Last I heard you were buried in {stressor}." },
-        { speaker: "You", text: "I was. Finally free of that — now I'm somehow into {newActivity} instead." },
-        { speaker: "Friend", text: "Ha, of course you are. You always find something to fill your time." },
-        { speaker: "You", text: "Can't help it. What about you — still doing {hobby}?" },
-        { speaker: "Friend", text: "Every {weekday}, actually. It's basically my whole personality now." },
-        { speaker: "You", text: "I love that for you, honestly." },
-        { speaker: "Friend", text: "We should really get {hangout} more often, {name}. I miss this." },
-        { speaker: "You", text: "Agreed. No more year-long gaps, deal?" },
-        { speaker: "Friend", text: "Deal. I'm holding you to it." },
-        { speaker: "You", text: "Good, hold me accountable — I clearly need it." },
-        { speaker: "Friend", text: "Oh, before I forget — did you hear about {newsItem}?" },
-        { speaker: "You", text: "No! Tell me everything, I've clearly been out of the loop." },
-        { speaker: "Friend", text: "Get comfortable, {name}. This is a whole story." },
-        { speaker: "You", text: "I've got nowhere to be. Go." }
-    ]},
-    { context: "First day at a new job", lines: [
-        { speaker: "Coworker", text: "You must be {name} — welcome aboard! I'm supposed to show you around." },
-        { speaker: "You", text: "Thank you, I appreciate it. This place is bigger than I expected." },
-        { speaker: "Coworker", text: "Right? Took me weeks to stop getting lost. Coffee machine's this way, most important stop." },
-        { speaker: "You", text: "Good priorities. Lead the way." },
-        { speaker: "Coworker", text: "So where'd you work before this, {name}?" },
-        { speaker: "You", text: "I was doing {priorJob} for a few years, then decided it was time for a change." },
-        { speaker: "Coworker", text: "Nice. What made you land here specifically?" },
-        { speaker: "You", text: "Honestly, {reasonForJob} really stood out to me." },
-        { speaker: "Coworker", text: "That tracks, it's a big draw for a lot of us. You'll fit right in." },
-        { speaker: "You", text: "That's good to hear. I was a little nervous, not going to lie." },
-        { speaker: "Coworker", text: "Everyone is on day one, {name}. You get used to it fast." },
-        { speaker: "You", text: "I hope so. Any advice for surviving the first week?" },
-        { speaker: "Coworker", text: "Ask questions, don't be afraid to admit when you're lost, and never skip the {weekday} team lunch." },
-        { speaker: "You", text: "Noted. Team lunch is non-negotiable, got it." },
-        { speaker: "Coworker", text: "Exactly. Oh, and steer clear of {officeHazard} — long story." },
-        { speaker: "You", text: "Now I have to know the story." },
-        { speaker: "Coworker", text: "Ask me again after your first week, {name}. You'll understand." },
-        { speaker: "You", text: "Deal. I'll hold you to that." }
-    ]},
-    { context: "Living with a roommate", lines: [
-        { speaker: "Roommate", text: "{name}, please tell me you didn't eat my {snackFood}." },
-        { speaker: "You", text: "...I might have. In my defense, I was very hungry." },
-        { speaker: "Roommate", text: "That was for tomorrow! You're the worst." },
-        { speaker: "You", text: "I'll replace it, I promise. I'll even get the good kind." },
-        { speaker: "Roommate", text: "You'd better. Also, did you do the {chore} yet?" },
-        { speaker: "You", text: "Working on it. It's on my list, right after {chore2}." },
-        { speaker: "Roommate", text: "Your list is just vibes at this point, {name}." },
-        { speaker: "You", text: "Harsh but fair. I'll get to it tonight, I swear." },
-        { speaker: "Roommate", text: "Sure you will. Are we still doing {activity} {timeSlot}?" },
-        { speaker: "You", text: "Yes! I've actually been looking forward to that all week." },
-        { speaker: "Roommate", text: "Good, because I already told people we're hosting." },
-        { speaker: "You", text: "Wait, hosting? How many people, exactly?" },
-        { speaker: "Roommate", text: "A few. Okay, maybe more than a few. It's fine, we'll figure it out." },
-        { speaker: "You", text: "This is exactly the kind of chaos I signed up for, apparently." },
-        { speaker: "Roommate", text: "You knew what you were getting into when you moved in, {name}." },
-        { speaker: "You", text: "I really did not, but here we are." },
-        { speaker: "Roommate", text: "Here we are. Now go do the {chore}, please." },
-        { speaker: "You", text: "Fine. But you owe me for the {snackFood} thing." }
-    ]},
-    { context: "A text thread", lines: [
-        { speaker: "Friend (text)", text: "hey {name} you around this weekend?" },
-        { speaker: "You (text)", text: "yeah should be free, what's up" },
-        { speaker: "Friend (text)", text: "few of us are doing {activity}, you in?" },
-        { speaker: "You (text)", text: "depends, is {thirdParty} going" },
-        { speaker: "Friend (text)", text: "unfortunately yes lol" },
-        { speaker: "You (text)", text: "lmaooo fine i'll come anyway" },
-        { speaker: "Friend (text)", text: "knew i could count on you {name}" },
-        { speaker: "You (text)", text: "don't get used to it" },
-        { speaker: "Friend (text)", text: "also bringing {snackFood} if you want some" },
-        { speaker: "You (text)", text: "say less, i'm in" },
-        { speaker: "Friend (text)", text: "perfect. {meetDay} work for you?" },
-        { speaker: "You (text)", text: "should be good, what time" },
-        { speaker: "Friend (text)", text: "probably around {meetTime}, i'll send details" },
-        { speaker: "You (text)", text: "sounds good, see you then" },
-        { speaker: "Friend (text)", text: "don't be late this time {name}" },
-        { speaker: "You (text)", text: "no promises but i'll try" },
-        { speaker: "Friend (text)", text: "that's all i ask honestly" },
-        { speaker: "You (text)", text: "fair. see you {meetDay}." }
-    ]},
-    { context: "A job interview", lines: [
-        { speaker: "Interviewer", text: "Thanks for coming in, {name}. Should we just dive in?" },
-        { speaker: "You", text: "Sounds good to me." },
-        { speaker: "Interviewer", text: "Tell me a bit about your background." },
-        { speaker: "You", text: "Sure — I spent a few years in {priorJob}, and I've been looking to grow into a more {careerFocus} role." },
-        { speaker: "Interviewer", text: "That makes sense. What would you say is your biggest strength?" },
-        { speaker: "You", text: "Honestly, I think it's that I {trait}." },
-        { speaker: "Interviewer", text: "Good one. And on the flip side — where do you think you could improve?" },
-        { speaker: "You", text: "I'm working on {growthArea}, if I'm being honest." },
-        { speaker: "Interviewer", text: "I appreciate the honesty. Why us, specifically?" },
-        { speaker: "You", text: "Honestly, {reasonForJob} really drew me in." },
-        { speaker: "Interviewer", text: "Good answer. Do you have any questions for me?" },
-        { speaker: "You", text: "I do, actually — what does success look like after {timeframe} in this role?" },
-        { speaker: "Interviewer", text: "Great question. We'd want to see you {successMetric}." },
-        { speaker: "You", text: "That's really helpful context, thank you." },
-        { speaker: "Interviewer", text: "Of course. Last thing — any concerns about the role so far?" },
-        { speaker: "You", text: "Not really, though I am curious about {concernTopic}." },
-        { speaker: "Interviewer", text: "Fair question. We can go over that in detail. Thanks again for your time, {name}." },
-        { speaker: "You", text: "Thank you, I really enjoyed this conversation." }
-    ]},
-    { context: "Meeting someone at a party", lines: [
-        { speaker: "Someone new", text: "Hi, I don't think we've met — I'm supposed to know everyone here somehow." },
-        { speaker: "You", text: "I'm {name}. Honestly, I don't know many people either." },
-        { speaker: "Someone new", text: "Good, solidarity. How do you know the host?" },
-        { speaker: "You", text: "We used to work together, actually. You?" },
-        { speaker: "Someone new", text: "Childhood friends, believe it or not. So, {name}, what do you do these days?" },
-        { speaker: "You", text: "I'm in {field}, mostly. Keeps me busier than I'd like." },
-        { speaker: "Someone new", text: "That sounds intense. Do you actually enjoy it?" },
-        { speaker: "You", text: "Most days, yeah. It helps that I'm into {hobby} outside of work." },
-        { speaker: "Someone new", text: "Oh, I love that. How'd you get into it?" },
-        { speaker: "You", text: "Honestly, kind of by accident. A friend dragged me along once and it stuck." },
-        { speaker: "Someone new", text: "Those are the best kinds of hobbies. I'm still looking for mine." },
-        { speaker: "You", text: "You should come try it sometime — always looking for more people." },
-        { speaker: "Someone new", text: "I might actually take you up on that, {name}." },
-        { speaker: "You", text: "I'll hold you to it." },
-        { speaker: "Someone new", text: "Deal. This has been way better than the small talk I was expecting tonight." },
-        { speaker: "You", text: "Same, honestly. Glad we ended up talking." },
-        { speaker: "Someone new", text: "Me too, {name}. Let's actually exchange numbers before I forget." },
-        { speaker: "You", text: "Good call, I was going to suggest the same thing." }
-    ]},
-    { context: "A weekend call with Mom", lines: [
-        { speaker: "Mom", text: "Hi sweetie, I was just thinking about you." },
-        { speaker: "You", text: "Hi Mom, that's funny, I was actually about to call you." },
-        { speaker: "Mom", text: "Great minds. How's everything going, {name}?" },
-        { speaker: "You", text: "Pretty good, actually. Been busy with {stressor}, but it's manageable." },
-        { speaker: "Mom", text: "You always say that. Are you eating enough? Sleeping enough?" },
-        { speaker: "You", text: "Yes, Mom, I'm eating. I'm an adult, I promise." },
-        { speaker: "Mom", text: "I know, I know. I still worry, that's my job." },
-        { speaker: "You", text: "I appreciate it, really. How's everyone back home?" },
-        { speaker: "Mom", text: "Good! {relative} just started {newActivity}, if you can believe that." },
-        { speaker: "You", text: "No way, that's amazing. Good for them." },
-        { speaker: "Mom", text: "Right? Anyway, are you coming home for {occasion} this year?" },
-        { speaker: "You", text: "I'm planning on it, yeah. Wouldn't miss it." },
-        { speaker: "Mom", text: "Good, because I already told everyone you'd be there, {name}." },
-        { speaker: "You", text: "No pressure, then." },
-        { speaker: "Mom", text: "None at all. Call me before you book anything, okay?" },
-        { speaker: "You", text: "I will, I promise. Love you, Mom." },
-        { speaker: "Mom", text: "Love you too, sweetie. Talk soon." },
-        { speaker: "You", text: "Talk soon. Bye, Mom." }
-    ]}
-  ];
 
   let currentIndex = 0;
   let lastIndex = -1;
   let currentFillers = {};
   let currentLines = [];
   let keptNames = [];
+  let currentVariant = 0;
 
   const nameInput = document.getElementById('nameInput');
   const contextEl = document.getElementById('context');
@@ -562,6 +349,20 @@
     } while (idx === lastIndex);
     lastIndex = idx;
     return idx;
+  }
+
+  function pickVariant(scenario) {
+    const count = scenario.variants.length;
+    if (count <= 1) return 0;
+    return Math.floor(Math.random() * count);
+  }
+
+  function activeScenario() {
+    const scenario = scenarios[currentIndex];
+    return {
+      context: scenario.context,
+      lines: scenario.variants[currentVariant].map(([speaker, text]) => ({ speaker, text }))
+    };
   }
 
   function generateFillers(scenario) {
@@ -637,9 +438,10 @@
   function render(pickNew) {
     if (pickNew) {
       currentIndex = pickScenarioIndex();
-      currentFillers = generateFillers(scenarios[currentIndex]);
+      currentVariant = pickVariant(scenarios[currentIndex]);
+      currentFillers = generateFillers(activeScenario());
     }
-    const scenario = scenarios[currentIndex];
+    const scenario = activeScenario();
     contextEl.textContent = scenario.context;
 
     const raw = nameInput.value.trim();
