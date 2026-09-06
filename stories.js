@@ -4,61 +4,357 @@
  * This file contains the conversation content only.
  * You can add/edit stories here without touching the page UI.
  *
- * Each scene has a context and several variants. The app chooses a
- * different variant whenever you press "Another scene".
+ * Every story variant includes several natural uses of {name},
+ * since the purpose of this page is specifically to test how
+ * a name feels when other people actually say it.
  */
 
 const SLOTS = {
-  drink: ["an oat milk latte", "a cold brew", "a matcha latte", "a chai latte", "an iced americano", "a hot chocolate"],
-  snack: ["a croissant", "a blueberry muffin", "a cinnamon roll", "a bagel with cream cheese", "a scone"],
-  dayLooking: ["Tuesday", "the weekend", "Wednesday", "Friday", "this morning"],
-  activity: ["trivia night", "a movie", "board games", "something outdoorsy", "brunch"],
-  stressor: ["work deadlines", "moving apartments", "wedding planning", "a big job hunt", "training for a race"],
-  newActivity: ["pottery", "rock climbing", "learning guitar", "running", "cooking classes"],
-  hobby: ["pottery", "trivia", "rock climbing", "running", "painting", "chess"],
-  hangout: ["coffee", "lunch", "dinner", "a walk", "a proper catch-up"],
-  newsItem: ["that new restaurant downtown", "Jamie’s big move", "the reunion everyone’s planning", "that show everyone’s binging", "the new place on Main Street"],
-  priorJob: ["marketing", "retail management", "freelance design", "customer support", "teaching"],
-  reasonForJob: ["the team culture", "the mission", "the flexibility", "the growth opportunities", "the people I met interviewing"],
-  officeHazard: ["the third-floor printer", "the coffee after 3pm", "reply-all emails", "the break room microwave", "the office playlist"],
-  chore: ["the dishes", "the laundry", "vacuuming", "the recycling", "the grocery shopping"],
-  chore2: ["walking the dog", "answering some emails", "a nap", "returning some calls", "finishing my coffee"],
-  timeSlot: ["on Friday", "Saturday night", "Sunday afternoon", "tonight", "this weekend"],
-  thirdParty: ["Jordan", "Alex", "Sam", "Priya", "Marcus"],
-  snackFood: ["pizza", "cookies", "chips", "ice cream", "cake"],
-  meetDay: ["Saturday", "Sunday", "Friday night", "tomorrow", "next weekend"],
-  meetTime: ["7", "6:30", "8ish", "5:45", "noon"],
-  weekday: ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday"],
-  careerFocus: ["strategic", "creative", "hands-on", "collaborative", "leadership"],
-  trait: ["work well under pressure", "love solving problems", "pick things up quickly", "pay attention to detail", "work well with a team", "stay calm when things get hectic"],
-  growthArea: ["delegating more", "public speaking", "saying no to extra projects", "getting better at documentation", "not micromanaging myself"],
-  timeframe: ["six months", "the first year", "90 days", "the first quarter", "a year"],
-  successMetric: ["leading your own projects", "being fully ramped up with the team", "contributing to key decisions", "mentoring newer hires", "owning a full workstream"],
-  concernTopic: ["the team’s current workload", "how remote work is handled", "the timeline for this role", "the team structure", "growth opportunities here"],
-  field: ["marketing", "software", "teaching", "healthcare", "design", "finance"],
-  relative: ["your cousin", "your uncle", "your brother", "your aunt", "your grandma"],
-  occasion: ["the holidays", "Thanksgiving", "the family reunion", "my birthday", "the Fourth of July"],
-  dish: ["grilled salmon", "mushroom risotto", "veggie burger", "pad thai", "roasted chicken"],
+  drink: [
+    "an oat milk latte",
+    "a cold brew",
+    "a matcha latte",
+    "a chai latte",
+    "an iced americano",
+    "a hot chocolate"
+  ],
 
-  // Additional slots used by the newer scenes.
-  weather: ["pouring rain", "a heat wave", "that weird windy weather", "the first really cold morning", "perfect sunny weather"],
-  place: ["the bookstore", "the park", "the museum", "the little café downtown", "the farmer’s market"],
-  object: ["a ridiculous mug", "a tiny plant", "an old camera", "a bright red jacket", "a completely unnecessary lamp"],
-  food: ["dumplings", "ramen", "tacos", "pancakes", "fresh bread"],
-  game: ["Codenames", "Mario Kart", "a card game", "charades", "a ridiculously complicated board game"],
-  errand: ["pick up a package", "return a shirt", "buy toothpaste", "get groceries", "drop something off"],
-  excuse: ["I missed the bus", "my phone died", "I took a wrong turn", "I got distracted by a dog", "I underestimated how far away it was"],
-  compliment: ["your jacket", "your haircut", "your shoes", "your taste in music", "your laugh"],
-  surprise: ["I got tickets", "I found the thing you were looking for", "I actually remembered your coffee order", "I brought snacks", "I have a ridiculous story"],
-  destination: ["the coast", "the mountains", "the next city over", "a tiny town nobody’s heard of", "somewhere with absolutely no itinerary"],
-  excuse2: ["I was trying to be early", "I genuinely thought it was tomorrow", "I forgot where I parked", "I got trapped talking to someone", "I followed the wrong group"],
-  weatherPlan: ["go for a walk", "sit outside", "check out the market", "take the scenic route", "find somewhere with good coffee"]
+  snack: [
+    "a croissant",
+    "a blueberry muffin",
+    "a cinnamon roll",
+    "a bagel with cream cheese",
+    "a scone"
+  ],
+
+  dayLooking: [
+    "Tuesday",
+    "the weekend",
+    "Wednesday",
+    "Friday",
+    "this morning"
+  ],
+
+  activity: [
+    "trivia night",
+    "a movie",
+    "board games",
+    "something outdoorsy",
+    "brunch"
+  ],
+
+  stressor: [
+    "work deadlines",
+    "moving apartments",
+    "wedding planning",
+    "a big job hunt",
+    "training for a race"
+  ],
+
+  newActivity: [
+    "pottery",
+    "rock climbing",
+    "learning guitar",
+    "running",
+    "cooking classes"
+  ],
+
+  hobby: [
+    "pottery",
+    "trivia",
+    "rock climbing",
+    "running",
+    "painting",
+    "chess"
+  ],
+
+  hangout: [
+    "coffee",
+    "lunch",
+    "dinner",
+    "a walk",
+    "a proper catch-up"
+  ],
+
+  newsItem: [
+    "that new restaurant downtown",
+    "Jamie’s big move",
+    "the reunion everyone’s planning",
+    "that show everyone’s binging",
+    "the new place on Main Street"
+  ],
+
+  priorJob: [
+    "marketing",
+    "retail management",
+    "freelance design",
+    "customer support",
+    "teaching"
+  ],
+
+  reasonForJob: [
+    "the team culture",
+    "the mission",
+    "the flexibility",
+    "the growth opportunities",
+    "the people I met interviewing"
+  ],
+
+  officeHazard: [
+    "the third-floor printer",
+    "the coffee after 3pm",
+    "reply-all emails",
+    "the break room microwave",
+    "the office playlist"
+  ],
+
+  chore: [
+    "the dishes",
+    "the laundry",
+    "vacuuming",
+    "the recycling",
+    "the grocery shopping"
+  ],
+
+  chore2: [
+    "walking the dog",
+    "answering some emails",
+    "a nap",
+    "returning some calls",
+    "finishing my coffee"
+  ],
+
+  timeSlot: [
+    "on Friday",
+    "Saturday night",
+    "Sunday afternoon",
+    "tonight",
+    "this weekend"
+  ],
+
+  thirdParty: [
+    "Jordan",
+    "Alex",
+    "Sam",
+    "Priya",
+    "Marcus"
+  ],
+
+  snackFood: [
+    "pizza",
+    "cookies",
+    "chips",
+    "ice cream",
+    "cake"
+  ],
+
+  meetDay: [
+    "Saturday",
+    "Sunday",
+    "Friday night",
+    "tomorrow",
+    "next weekend"
+  ],
+
+  meetTime: [
+    "7",
+    "6:30",
+    "8ish",
+    "5:45",
+    "noon"
+  ],
+
+  weekday: [
+    "Monday",
+    "Tuesday",
+    "Wednesday",
+    "Thursday",
+    "Friday"
+  ],
+
+  careerFocus: [
+    "strategic",
+    "creative",
+    "hands-on",
+    "collaborative",
+    "leadership"
+  ],
+
+  trait: [
+    "work well under pressure",
+    "love solving problems",
+    "pick things up quickly",
+    "pay attention to detail",
+    "work well with a team",
+    "stay calm when things get hectic"
+  ],
+
+  growthArea: [
+    "delegating more",
+    "public speaking",
+    "saying no to extra projects",
+    "getting better at documentation",
+    "not micromanaging myself"
+  ],
+
+  timeframe: [
+    "six months",
+    "the first year",
+    "90 days",
+    "the first quarter",
+    "a year"
+  ],
+
+  successMetric: [
+    "leading your own projects",
+    "being fully ramped up with the team",
+    "contributing to key decisions",
+    "mentoring newer hires",
+    "owning a full workstream"
+  ],
+
+  concernTopic: [
+    "the team’s current workload",
+    "how remote work is handled",
+    "the timeline for this role",
+    "the team structure",
+    "growth opportunities here"
+  ],
+
+  field: [
+    "marketing",
+    "software",
+    "teaching",
+    "healthcare",
+    "design",
+    "finance"
+  ],
+
+  relative: [
+    "your cousin",
+    "your uncle",
+    "your brother",
+    "your aunt",
+    "your grandma"
+  ],
+
+  occasion: [
+    "the holidays",
+    "Thanksgiving",
+    "the family reunion",
+    "my birthday",
+    "the Fourth of July"
+  ],
+
+  dish: [
+    "grilled salmon",
+    "mushroom risotto",
+    "veggie burger",
+    "pad thai",
+    "roasted chicken"
+  ],
+
+  weather: [
+    "pouring rain",
+    "a heat wave",
+    "that weird windy weather",
+    "the first really cold morning",
+    "perfect sunny weather"
+  ],
+
+  place: [
+    "the bookstore",
+    "the park",
+    "the museum",
+    "the little café downtown",
+    "the farmer’s market"
+  ],
+
+  object: [
+    "a ridiculous mug",
+    "a tiny plant",
+    "an old camera",
+    "a bright red jacket",
+    "a completely unnecessary lamp"
+  ],
+
+  food: [
+    "dumplings",
+    "ramen",
+    "tacos",
+    "pancakes",
+    "fresh bread"
+  ],
+
+  game: [
+    "Codenames",
+    "Mario Kart",
+    "a card game",
+    "charades",
+    "a ridiculously complicated board game"
+  ],
+
+  errand: [
+    "pick up a package",
+    "return a shirt",
+    "buy toothpaste",
+    "get groceries",
+    "drop something off"
+  ],
+
+  excuse: [
+    "I missed the bus",
+    "my phone died",
+    "I took a wrong turn",
+    "I got distracted by a dog",
+    "I underestimated how far away it was"
+  ],
+
+  compliment: [
+    "your jacket",
+    "your haircut",
+    "your shoes",
+    "your taste in music",
+    "your laugh"
+  ],
+
+  surprise: [
+    "I got tickets",
+    "I found the thing you were looking for",
+    "I actually remembered your coffee order",
+    "I brought snacks",
+    "I have a ridiculous story"
+  ],
+
+  destination: [
+    "the coast",
+    "the mountains",
+    "the next city over",
+    "a tiny town nobody’s heard of",
+    "somewhere with absolutely no itinerary"
+  ],
+
+  weatherPlan: [
+    "go for a walk",
+    "sit outside",
+    "check out the market",
+    "take the scenic route",
+    "find somewhere with good coffee"
+  ]
 };
 
+
 const scenarios = [
+
+  /* ==========================================================
+     COFFEE SHOP REGULAR
+     ========================================================== */
+
   {
     context: "Coffee shop regular",
+
     variants: [
+
       [
         ["Barista", "Hey, {name}. You’re early."],
         ["You", "That sounds accusatory."],
@@ -79,8 +375,10 @@ const scenarios = [
         ["Barista", "I never get promises from you anyway."],
         ["You", "Yet you keep serving me."],
         ["Barista", "Occupational hazard."],
-        ["You", "See you tomorrow, probably." ]
+        ["You", "See you tomorrow, probably."],
+        ["Barista", "I’ll see you then, {name}."]
       ],
+
       [
         ["Barista", "Morning, {name}. I have a question."],
         ["You", "That’s ominous."],
@@ -98,11 +396,13 @@ const scenarios = [
         ["You", "How did you respond?"],
         ["Barista", "I stared at them until they reconsidered."],
         ["You", "Powerful."],
-        ["Barista", "Anyway, here’s your coffee."],
+        ["Barista", "Anyway, here’s your coffee, {name}."],
         ["You", "You remembered."],
         ["Barista", "Of course I remembered, {name}."],
-        ["You", "Okay, that’s actually very sweet." ]
+        ["You", "Okay, that’s actually very sweet."],
+        ["Barista", "Don’t let it go to your head."]
       ],
+
       [
         ["Barista", "Hey, {name}. You look like you lost an argument with your alarm clock."],
         ["You", "I did. It was a decisive defeat."],
@@ -116,41 +416,52 @@ const scenarios = [
         ["You", "I’ve got {activity} later, and I’d like to arrive with at least one functional brain cell."],
         ["Barista", "Then we have a mission."],
         ["You", "We do."],
-        ["Barista", "How much encouragement do you need?"],
+        ["Barista", "How much encouragement do you need, {name}?"],
         ["You", "A dangerous amount."],
         ["Barista", "Good. Here’s your order."],
         ["You", "You’re a lifesaver."],
-        ["Barista", "Come back tomorrow and I’ll deny ever hearing that."],
-        ["You", "Deal." ]
+        ["Barista", "Come back tomorrow and I’ll deny ever hearing that, {name}."],
+        ["You", "Deal."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     OLD FRIEND
+     ========================================================== */
+
   {
     context: "Catching up with an old friend",
+
     variants: [
+
       [
-        ["Friend", "{name}! Oh my gosh."],
+        ["Friend", "{name}! Oh my gosh, I haven’t seen you in forever."],
         ["You", "Hi! It has been way too long."],
-        ["Friend", "I was literally just thinking, ‘I wonder what happened to you.’"],
-        ["You", "Mostly? {stressor}."],
+        ["Friend", "Seriously, {name}, where have you even been?"],
+        ["You", "Mostly dealing with {stressor}."],
         ["Friend", "Ah. So you chose chaos."],
         ["You", "Apparently."],
-        ["Friend", "Are you still doing {hobby}?"],
-        ["You", "Of course. I have standards."],
-        ["Friend", "That is not what I remember."],
-        ["You", "I’ve evolved."],
-        ["Friend", "Clearly."],
-        ["You", "What about you?"],
-        ["Friend", "I started {newActivity}."],
-        ["You", "You? Voluntarily?"],
-        ["Friend", "Exactly. I’m becoming interesting."],
-        ["You", "I’m proud of you."],
-        ["Friend", "We need to stop doing this once every geological era."],
-        ["You", "Agreed."],
-        ["Friend", "{hangout}. Soon."],
-        ["You", "Soon. I mean it this time." ]
+        ["Friend", "And you’re just telling me this now? Come on, {name}."],
+        ["You", "I was going to tell you eventually."],
+        ["Friend", "Sure you were."],
+        ["You", "What about you? Are you still doing {hobby}?"],
+        ["Friend", "Absolutely. Every week."],
+        ["You", "I knew you’d stick with it."],
+        ["Friend", "Unlike you, apparently. What is the new obsession?"],
+        ["You", "{newActivity}."],
+        ["Friend", "Of course. {name}, you collect hobbies like they’re Pokémon."],
+        ["You", "That’s a terrible analogy."],
+        ["Friend", "It’s a perfect analogy."],
+        ["You", "Whatever you say."],
+        ["Friend", "Seriously, though, I’ve missed this."],
+        ["You", "Yeah. Me too."],
+        ["Friend", "Let’s do {hangout} soon, okay, {name}?"],
+        ["You", "Deal. And this time I actually mean it."]
       ],
+
       [
         ["Friend", "Wait. Is that actually you, {name}?"],
         ["You", "I have been asking myself the same question."],
@@ -158,7 +469,7 @@ const scenarios = [
         ["You", "That’s either a compliment or a threat."],
         ["Friend", "Definitely a compliment."],
         ["You", "I’ll take it."],
-        ["Friend", "So what’s new?"],
+        ["Friend", "So what’s new, {name}?"],
         ["You", "I got really into {newActivity}. It happened by accident."],
         ["Friend", "Of course it did."],
         ["You", "What is that supposed to mean?"],
@@ -170,14 +481,45 @@ const scenarios = [
         ["You", "{hobby}."],
         ["Friend", "Yep. Still predictable."],
         ["You", "And yet you missed me."],
-        ["Friend", "Unfortunately, yes." ]
+        ["Friend", "Unfortunately, yes, {name}."],
+        ["You", "I’ll take it."]
+      ],
+
+      [
+        ["Friend", "{name}! I knew that was you."],
+        ["You", "You recognized me from across the room?"],
+        ["Friend", "Please. I could recognize that expression anywhere."],
+        ["You", "What expression?"],
+        ["Friend", "The one that says you’re pretending everything is under control."],
+        ["You", "I am offended by how accurate that is."],
+        ["Friend", "So what’s going on, {name}?"],
+        ["You", "Honestly? Pretty good. I’ve been trying {newActivity} lately."],
+        ["Friend", "You? Really?"],
+        ["You", "That’s the reaction I was hoping for."],
+        ["Friend", "No, I mean it suits you."],
+        ["You", "I’ll take that."],
+        ["Friend", "We have so much catching up to do."],
+        ["You", "Start with the biggest piece of news."],
+        ["Friend", "Fine. Did you hear about {newsItem}?"],
+        ["You", "No!"],
+        ["Friend", "Perfect. I have a story."],
+        ["You", "Then I’m getting comfortable. Go."],
+        ["Friend", "Glad you’re here, {name}."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     NEW JOB
+     ========================================================== */
+
   {
     context: "First day at a new job",
+
     variants: [
+
       [
         ["Coworker", "You must be {name}. Welcome! I’m your unofficial tour guide."],
         ["You", "Unofficial? Should I be worried?"],
@@ -195,9 +537,10 @@ const scenarios = [
         ["You", "That is strangely reassuring."],
         ["Coworker", "One more rule: never volunteer to fix {officeHazard}."],
         ["You", "Now I definitely want to know why."],
-        ["Coworker", "Give it a week."],
+        ["Coworker", "Give it a week, {name}."],
         ["You", "Deal. I’ll ask you then."]
       ],
+
       [
         ["Coworker", "Morning! You’re {name}, right?"],
         ["You", "Yep. First day."],
@@ -208,22 +551,51 @@ const scenarios = [
         ["Coworker", "Come on, I’ll show you your desk."],
         ["You", "Before I get lost?"],
         ["Coworker", "Exactly before you get lost."],
-        ["You", "Thanks. So what’s the one thing I should know?"],
+        ["You", "Thanks. So what’s the one thing I should know, {name}?"],
         ["Coworker", "The calendar is lying to you."],
         ["You", "That’s ominous."],
         ["Coworker", "If something says thirty minutes, assume an hour."],
         ["You", "Noted."],
         ["Coworker", "Also, lunch on {weekday}. We all go."],
         ["You", "That’s easy enough."],
-        ["Coworker", "Great. You’re already learning."],
+        ["Coworker", "Great. You’re already learning, {name}."],
         ["You", "I think I can survive this place."]
+      ],
+
+      [
+        ["Coworker", "Hey, {name}. I’m supposed to make sure you don’t wander into the wrong department."],
+        ["You", "That sounds like useful supervision."],
+        ["Coworker", "I’m excellent at preventing wandering."],
+        ["You", "So where do I start?"],
+        ["Coworker", "Tell me what you did before coming here."],
+        ["You", "{priorJob}. A little different from this."],
+        ["Coworker", "Different can be good."],
+        ["You", "That’s what I’m hoping."],
+        ["Coworker", "What sold you on the job, {name}?"],
+        ["You", "The {reasonForJob}, mostly."],
+        ["Coworker", "Good answer. You’ll hear that come up a lot."],
+        ["You", "Any survival advice?"],
+        ["Coworker", "Ask questions early. Pretending you understand only creates paperwork."],
+        ["You", "Noted."],
+        ["Coworker", "And stay away from {officeHazard}, {name}."],
+        ["You", "You keep saying things like that without explanations."],
+        ["Coworker", "It’s more fun this way."],
+        ["You", "Okay. I already have questions."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     ROOMMATE
+     ========================================================== */
+
   {
     context: "Living with a roommate",
+
     variants: [
+
       [
         ["Roommate", "{name}, did you eat my {snackFood}?"],
         ["You", "Define ‘eat.’"],
@@ -231,7 +603,7 @@ const scenarios = [
         ["You", "Okay, yes. I did."],
         ["Roommate", "It had my name on it."],
         ["You", "In fairness, the handwriting was tiny."],
-        ["Roommate", "You’re replacing it."],
+        ["Roommate", "You’re replacing it, {name}."],
         ["You", "Obviously."],
         ["Roommate", "And while you’re up, did you ever do {chore}?"],
         ["You", "I was going to."],
@@ -241,11 +613,12 @@ const scenarios = [
         ["You", "I’ll do it tonight."],
         ["Roommate", "Fine. Also, are we still doing {activity} {timeSlot}?"],
         ["You", "Yes. I actually remembered."],
-        ["Roommate", "Miracles really are happening today."],
+        ["Roommate", "Miracles really are happening today, {name}."],
         ["You", "I contain multitudes."]
       ],
+
       [
-        ["Roommate", "Why is there a bowl in the living room?"],
+        ["Roommate", "Why is there a bowl in the living room, {name}?"],
         ["You", "Long story."],
         ["Roommate", "I have time."],
         ["You", "I started {chore2}, got distracted, and somehow ended up here."],
@@ -255,7 +628,7 @@ const scenarios = [
         ["You", "No, but I can."],
         ["Roommate", "Good. Peace offering accepted."],
         ["You", "So we’re good?"],
-        ["Roommate", "We’re good if you also promise to do {chore}."],
+        ["Roommate", "We’re good if you also promise to do {chore}, {name}."],
         ["You", "You’re really committed to the chore agenda."],
         ["Roommate", "Someone has to be."],
         ["You", "Fine. After {activity}."],
@@ -263,13 +636,42 @@ const scenarios = [
         ["You", "Absolutely."],
         ["Roommate", "Okay. Then I’ll let the bowl stay mysterious for now."],
         ["You", "Thank you for your trust."]
+      ],
+
+      [
+        ["Roommate", "{name}, we’re out of coffee."],
+        ["You", "That is catastrophic."],
+        ["Roommate", "I know. I checked the cabinet twice."],
+        ["You", "Okay. New plan: emergency coffee run."],
+        ["Roommate", "I’m listening."],
+        ["You", "We go now, get coffee, and pick up {snackFood}."],
+        ["Roommate", "And then?"],
+        ["You", "Then I come home and finally do {chore}."],
+        ["Roommate", "You’re saying all the right words."],
+        ["You", "You don’t believe me."],
+        ["Roommate", "I have historical evidence, {name}."],
+        ["You", "Fair."],
+        ["Roommate", "What are we doing {timeSlot}, anyway?"],
+        ["You", "{activity}, remember?"],
+        ["Roommate", "Right. Invite the others?"],
+        ["You", "Sure, but only if nobody expects me to be organized."],
+        ["Roommate", "No promises, {name}."],
+        ["You", "Then we’re ready."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     TEXT THREAD
+     ========================================================== */
+
   {
     context: "A text thread",
+
     variants: [
+
       [
         ["Friend (text)", "hey {name} you doing anything {timeSlot}?"],
         ["You (text)", "depends why"],
@@ -279,7 +681,7 @@ const scenarios = [
         ["You (text)", "oh no"],
         ["Friend (text)", "that bad?"],
         ["You (text)", "not bad. just statistically unpredictable"],
-        ["Friend (text)", "you’re coming though"],
+        ["Friend (text)", "you’re coming though, right {name}"],
         ["You (text)", "probably"],
         ["Friend (text)", "good because I’m bringing {snackFood}"],
         ["You (text)", "okay now I’m definitely coming"],
@@ -288,10 +690,12 @@ const scenarios = [
         ["Friend (text)", "around {meetTime}"],
         ["You (text)", "and where"],
         ["Friend (text)", "I’ll send it"],
-        ["You (text)", "deal. don’t let {thirdParty} choose the music"]
+        ["You (text)", "deal. don’t let {thirdParty} choose the music"],
+        ["Friend (text)", "no promises, {name}"]
       ],
+
       [
-        ["Friend (text)", "urgent question"],
+        ["Friend (text)", "urgent question, {name}"],
         ["You (text)", "what"],
         ["Friend (text)", "are you free {meetDay}"],
         ["You (text)", "maybe. why"],
@@ -303,19 +707,49 @@ const scenarios = [
         ["You (text)", "who else"],
         ["Friend (text)", "{thirdParty} and a few others"],
         ["You (text)", "interesting lineup"],
-        ["Friend (text)", "don’t overthink it"],
+        ["Friend (text)", "don’t overthink it, {name}"],
         ["You (text)", "too late"],
         ["Friend (text)", "bringing {snackFood} if that helps"],
         ["You (text)", "it does"],
         ["Friend (text)", "around {meetTime}?"],
-        ["You (text)", "works. send details"]
+        ["You (text)", "works. send details"],
+        ["Friend (text)", "knew I could count on you, {name}"]
+      ],
+
+      [
+        ["Friend (text)", "you around, {name}"],
+        ["You (text)", "yeah what’s up"],
+        ["Friend (text)", "I accidentally made plans"],
+        ["You (text)", "how do you accidentally make plans"],
+        ["Friend (text)", "long story"],
+        ["You (text)", "continue"],
+        ["Friend (text)", "anyway we’re doing {activity} {meetDay}"],
+        ["You (text)", "we?"],
+        ["Friend (text)", "you and me and whoever answers"],
+        ["You (text)", "bold strategy"],
+        ["Friend (text)", "you’re available though"],
+        ["You (text)", "sadly"],
+        ["Friend (text)", "great. {meetTime}?"],
+        ["You (text)", "sure"],
+        ["Friend (text)", "also I’m bringing {snackFood}"],
+        ["You (text)", "now it feels official"],
+        ["Friend (text)", "I knew food would win, {name}"],
+        ["You (text)", "you know me too well"]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     JOB INTERVIEW
+     ========================================================== */
+
   {
     context: "A job interview",
+
     variants: [
+
       [
         ["Interviewer", "Thanks for coming in, {name}. How are you feeling?"],
         ["You", "A little nervous, but excited."],
@@ -323,7 +757,7 @@ const scenarios = [
         ["You", "I spent several years in {priorJob}, and lately I’ve wanted something more {careerFocus}."],
         ["Interviewer", "What drew you toward that change?"],
         ["You", "{reasonForJob}, mostly. I wanted work I could really care about."],
-        ["Interviewer", "What do you think you bring to a team?"],
+        ["Interviewer", "What do you think you bring to a team, {name}?"],
         ["You", "I {trait}."],
         ["Interviewer", "Can you give me an example?"],
         ["You", "Sure. There was one project where things went sideways, and I ended up..."],
@@ -333,15 +767,18 @@ const scenarios = [
         ["You", "Probably {growthArea}. I’m getting better at it."],
         ["Interviewer", "That’s a thoughtful answer."],
         ["You", "Thank you."],
-        ["Interviewer", "What would success look like after {timeframe}?"],
-        ["You", "Being trusted with bigger pieces of the work and contributing without needing hand-holding."]
+        ["Interviewer", "What would success look like after {timeframe}, {name}?"],
+        ["You", "Being trusted with bigger pieces of the work and contributing without needing hand-holding."],
+        ["Interviewer", "That sounds like a good goal."],
+        ["You", "I’d like to think so."]
       ],
+
       [
         ["Interviewer", "Hi, {name}. Thanks for being here."],
         ["You", "Thanks for having me."],
         ["Interviewer", "I’ll skip the formal script. What interested you about this role?"],
         ["You", "The combination of the work itself and {reasonForJob}."],
-        ["Interviewer", "What work have you done that feels most relevant?"],
+        ["Interviewer", "What work have you done that feels most relevant, {name}?"],
         ["You", "I was in {priorJob}, where I learned how to {trait}."],
         ["Interviewer", "And what’s something you had to learn the hard way?"],
         ["You", "{growthArea}, definitely."],
@@ -353,15 +790,44 @@ const scenarios = [
         ["You", "I’d like to be someone the team can rely on for difficult work."],
         ["Interviewer", "Good. Do you have questions for me?"],
         ["You", "Actually, yes. What does the team wish a new hire understood sooner?"],
-        ["Interviewer", "Excellent question."],
+        ["Interviewer", "Excellent question, {name}."],
         ["You", "I figured you’d know better than the job posting."]
+      ],
+
+      [
+        ["Interviewer", "So, {name}, why should we hire you?"],
+        ["You", "You’re starting with the easy question."],
+        ["Interviewer", "I thought I’d make it interesting."],
+        ["You", "Then I’ll give you the honest answer: I learn quickly, I care about doing things well, and I {trait}."],
+        ["Interviewer", "Good. Tell me about a time you made a mistake."],
+        ["You", "I underestimated how much coordination a project needed."],
+        ["Interviewer", "What did you do?"],
+        ["You", "I changed the plan, told everyone what happened, and fixed it."],
+        ["Interviewer", "No hiding it?"],
+        ["You", "That usually makes the problem worse."],
+        ["Interviewer", "Fair."],
+        ["You", "I’m much more careful about {growthArea} now, too."],
+        ["Interviewer", "Why this company, {name}?"],
+        ["You", "{reasonForJob} stood out to me."],
+        ["Interviewer", "And what would make you successful here?"],
+        ["You", "Clear expectations, room to take ownership, and a good team."],
+        ["Interviewer", "That sounds promising, {name}."],
+        ["You", "I’m glad to hear it."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     PARTY
+     ========================================================== */
+
   {
     context: "Meeting someone at a party",
+
     variants: [
+
       [
         ["Someone new", "Hi. I don’t think we’ve met."],
         ["You", "I’m {name}. I don’t know many people here either."],
@@ -371,7 +837,7 @@ const scenarios = [
         ["You", "We used to work together. You?"],
         ["Someone new", "Friend of a friend, which apparently is enough to get invited."],
         ["You", "Sounds official."],
-        ["Someone new", "So what do you do?"],
+        ["Someone new", "So what do you do, {name}?"],
         ["You", "I’m in {field}. It keeps me busy."],
         ["Someone new", "And what do you do when you’re not busy?"],
         ["You", "Usually {hobby}."],
@@ -380,8 +846,10 @@ const scenarios = [
         ["Someone new", "That’s how all good hobbies happen."],
         ["You", "Maybe you should try it."],
         ["Someone new", "I might."],
-        ["You", "Then I’ll expect a review."]
+        ["You", "Then I’ll expect a review."],
+        ["Someone new", "I’ll remember that, {name}."]
       ],
+
       [
         ["Someone new", "You look like you know where the snacks are."],
         ["You", "That’s the nicest compliment I’ve gotten tonight."],
@@ -395,13 +863,15 @@ const scenarios = [
         ["You", "I don’t. That’s the trick."],
         ["Someone new", "Good, so it’s not just me."],
         ["You", "Definitely not."],
-        ["Someone new", "What keeps you occupied?"],
+        ["Someone new", "What keeps you occupied, {name}?"],
         ["You", "{field}, mostly, and {hobby} when I need an excuse to stop thinking about work."],
         ["Someone new", "That sounds useful."],
         ["You", "It is until I start thinking about it too much."],
         ["Someone new", "I like your system."],
-        ["You", "You should borrow it."]
+        ["You", "You should borrow it."],
+        ["Someone new", "I might, {name}."]
       ],
+
       [
         ["Someone new", "Mind if I stand here? I needed a break from the loud room."],
         ["You", "Please. I was doing the exact same thing."],
@@ -409,7 +879,7 @@ const scenarios = [
         ["You", "I’m {name}, by the way."],
         ["Someone new", "Nice to meet you."],
         ["You", "You too."],
-        ["Someone new", "What brought you here?"],
+        ["Someone new", "What brought you here, {name}?"],
         ["You", "The promise of knowing at least two people."],
         ["Someone new", "And how many do you know now?"],
         ["You", "Still two."],
@@ -420,18 +890,27 @@ const scenarios = [
         ["Someone new", "I’ve always wanted to try that."],
         ["You", "There’s a place nearby. You should come sometime."],
         ["Someone new", "I’d actually like that."],
-        ["You", "Then let’s not lose each other in this party."]
+        ["You", "Then let’s not lose each other in this party."],
+        ["Someone new", "I’ll find you, {name}."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     MOM
+     ========================================================== */
+
   {
     context: "A weekend call with Mom",
+
     variants: [
+
       [
         ["Mom", "Hi, honey. How’s your weekend going?"],
         ["You", "Pretty good. I finally have a little breathing room."],
-        ["Mom", "Good. What have you been up to?"],
+        ["Mom", "Good. What have you been up to, {name}?"],
         ["You", "Mostly {stressor}, unfortunately."],
         ["Mom", "That sounds exhausting."],
         ["You", "It is, but I’m managing."],
@@ -445,13 +924,15 @@ const scenarios = [
         ["You", "No way."],
         ["Mom", "I know. I never saw that coming."],
         ["You", "Me neither."],
-        ["Mom", "Are you coming for {occasion}?"],
-        ["You", "I am. I wouldn’t miss it."]
+        ["Mom", "Are you coming for {occasion}, {name}?"],
+        ["You", "I am. I wouldn’t miss it."],
+        ["Mom", "Good. I’ll hold you to that."]
       ],
+
       [
         ["Mom", "Hey, sweetie. Did I catch you at a bad time?"],
         ["You", "Nope. I was just deciding what to do with the rest of the day."],
-        ["Mom", "Anything interesting?"],
+        ["Mom", "Anything interesting, {name}?"],
         ["You", "Maybe {activity}. I haven’t decided."],
         ["Mom", "That sounds more fun than anything I’m doing."],
         ["You", "What are you doing?"],
@@ -466,8 +947,10 @@ const scenarios = [
         ["Mom", "No, it’s sweet."],
         ["You", "What are we doing for {occasion}?"],
         ["Mom", "Nothing huge. I just want everyone together."],
-        ["You", "Then I’ll be there."]
+        ["You", "Then I’ll be there."],
+        ["Mom", "That’s my {name}."]
       ],
+
       [
         ["Mom", "Hi, {name}. I was thinking about you."],
         ["You", "That’s nice. I was actually about to call."],
@@ -479,21 +962,30 @@ const scenarios = [
         ["You", "How’s that working?"],
         ["Mom", "Badly."],
         ["You", "At least you’re honest."],
-        ["Mom", "What about you?"],
+        ["Mom", "What about you, {name}?"],
         ["You", "I’m okay. I’ve been spending some time on {newActivity}."],
         ["Mom", "I like hearing you have something fun to do."],
         ["You", "Me too."],
         ["Mom", "Will you call before you make travel plans?"],
         ["You", "Of course."],
         ["Mom", "Good. I want to actually see you this time."],
-        ["You", "You will. Promise."]
+        ["You", "You will. Promise."],
+        ["Mom", "Okay, {name}. I’ll let you get back to your day."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     SPONTANEOUS AFTERNOON
+     ========================================================== */
+
   {
     context: "A spontaneous afternoon out",
+
     variants: [
+
       [
         ["Friend", "So. I have an idea."],
         ["You", "That sentence has caused problems before."],
@@ -501,7 +993,7 @@ const scenarios = [
         ["You", "Go on."],
         ["Friend", "We go to {place}, get {food}, and refuse to check the time."],
         ["You", "That is a very good idea."],
-        ["Friend", "I knew you’d understand."],
+        ["Friend", "I knew you’d understand, {name}."],
         ["You", "What if we get bored?"],
         ["Friend", "Then we invent something to do."],
         ["You", "What if it starts raining?"],
@@ -511,10 +1003,13 @@ const scenarios = [
         ["You", "Alright. I’m in."],
         ["Friend", "Excellent. Let’s go before either of us becomes sensible."],
         ["You", "Too late. I brought a jacket."],
-        ["Friend", "Unbelievable."]
+        ["Friend", "Unbelievable."],
+        ["You", "You underestimate me, {name}."],
+        ["Friend", "I absolutely do not."]
       ],
+
       [
-        ["Friend", "Do you have plans?"],
+        ["Friend", "Do you have plans, {name}?"],
         ["You", "Not anymore."],
         ["Friend", "Perfect."],
         ["You", "Why does that sound like a trap?"],
@@ -529,14 +1024,47 @@ const scenarios = [
         ["Friend", "As many as necessary."],
         ["You", "That is not a number."],
         ["Friend", "It is now."],
-        ["You", "Okay, {name}. Lead on."]
+        ["You", "Okay, {name}. Lead on."],
+        ["Friend", "That’s the spirit."],
+        ["You", "And if we get lost?"],
+        ["Friend", "We call it exploring."]
+      ],
+
+      [
+        ["Friend", "{name}, put your shoes on."],
+        ["You", "Excuse me?"],
+        ["Friend", "We’re going somewhere."],
+        ["You", "Where?"],
+        ["Friend", "I refuse to tell you until we’re in the car."],
+        ["You", "That sounds suspicious."],
+        ["Friend", "It’s not suspicious. It’s mysterious."],
+        ["You", "Those are dangerously close synonyms."],
+        ["Friend", "Trust me, {name}."],
+        ["You", "Fine. Give me one clue."],
+        ["Friend", "There will be {food}."],
+        ["You", "You could have led with that."],
+        ["Friend", "I knew it would work."],
+        ["You", "Okay, I’m coming."],
+        ["Friend", "Excellent."],
+        ["You", "Do I need anything?"],
+        ["Friend", "A phone, shoes, and a willingness to make poor decisions."],
+        ["You", "I was born ready."],
+        ["Friend", "That’s why I called you, {name}."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     FIRST DATE
+     ========================================================== */
+
   {
     context: "A surprisingly good first date",
+
     variants: [
+
       [
         ["Date", "Hi. You’re {name}, right?"],
         ["You", "Yep. And you must be the person I was hoping actually existed."],
@@ -548,15 +1076,17 @@ const scenarios = [
         ["You", "That low?"],
         ["Date", "It was an eight until you made me laugh."],
         ["You", "I’ll take that as a win."],
-        ["Date", "So what’s something I wouldn’t guess from your profile?"],
+        ["Date", "So what’s something I wouldn’t guess from your profile, {name}?"],
         ["You", "I’m weirdly competitive about {hobby}."],
         ["Date", "That is incredibly specific."],
         ["You", "I know."],
         ["Date", "I’m going to need evidence eventually."],
         ["You", "Eventually can be arranged."],
         ["Date", "Good. I like where this is going."],
-        ["You", "Me too."]
+        ["You", "Me too."],
+        ["Date", "I’m glad I met you, {name}."]
       ],
+
       [
         ["Date", "I almost walked past you."],
         ["You", "Why? Do I not look like my pictures?"],
@@ -564,7 +1094,7 @@ const scenarios = [
         ["You", "Oh, I’m nervous. I’m just hiding it professionally."],
         ["Date", "Impressive."],
         ["You", "Thank you."],
-        ["Date", "What do you normally do on a weekend?"],
+        ["Date", "What do you normally do on a weekend, {name}?"],
         ["You", "Usually {activity}, or convincing myself I’m going to be productive."],
         ["Date", "How often does the productivity happen?"],
         ["You", "I’d rather not disclose that."],
@@ -575,14 +1105,45 @@ const scenarios = [
         ["Date", "I could tell you now."],
         ["You", "Now?"],
         ["Date", "If we get coffee again."],
-        ["You", "I think I can make time for that."]
+        ["You", "I think I can make time for that, {name}."],
+        ["Date", "Good answer."]
+      ],
+
+      [
+        ["Date", "Okay, {name}, honest question."],
+        ["You", "That sounds dangerous."],
+        ["Date", "What’s the weirdest hobby you’ve ever had?"],
+        ["You", "That depends on what you consider weird."],
+        ["Date", "Excellent. We’re off to a good start."],
+        ["You", "I knew I liked you."],
+        ["Date", "Careful, {name}. It’s only been ten minutes."],
+        ["You", "Too late."],
+        ["Date", "Fine. Your answer?"],
+        ["You", "Probably {hobby}."],
+        ["Date", "That’s honestly kind of adorable."],
+        ["You", "Adorable? I’ll take it."],
+        ["Date", "What about you?"],
+        ["You", "I once got very invested in {newActivity}."],
+        ["Date", "You two might actually get along."],
+        ["You", "Who?"],
+        ["Date", "You and my terrible decision-making."],
+        ["You", "Okay, {name}, I think this is going pretty well."],
+        ["Date", "I think so too."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     ROAD TRIP
+     ========================================================== */
+
   {
     context: "Planning a tiny road trip",
+
     variants: [
+
       [
         ["Friend", "Okay, important question: how much luggage are you bringing?"],
         ["You", "Define luggage."],
@@ -598,12 +1159,13 @@ const scenarios = [
         ["You", "Now that is dangerous."],
         ["Friend", "We stop when we see something interesting."],
         ["You", "I love that."],
-        ["Friend", "I knew you would."],
+        ["Friend", "I knew you would, {name}."],
         ["You", "What’s the one rule?"],
         ["Friend", "No complaining about the playlist."],
         ["You", "I can’t promise that."],
-        ["Friend", "Then we’re doomed."]
+        ["Friend", "Then we’re doomed, {name}."]
       ],
+
       [
         ["Friend", "I made the plan."],
         ["You", "That sentence is either comforting or terrifying."],
@@ -622,14 +1184,45 @@ const scenarios = [
         ["Friend", "Absolutely not."],
         ["You", "Then I withdraw my support."],
         ["Friend", "Too late, {name}. You’re coming."],
-        ["You", "Fine. I’m coming."]
+        ["You", "Fine. I’m coming."],
+        ["Friend", "Good. I knew I could count on you."]
+      ],
+
+      [
+        ["Friend", "{name}, pack a bag."],
+        ["You", "For what?"],
+        ["Friend", "Road trip."],
+        ["You", "That is not enough information."],
+        ["Friend", "We’re going to {destination}."],
+        ["You", "How long?"],
+        ["Friend", "Long enough to get sick of my playlist."],
+        ["You", "That sounds dangerous."],
+        ["Friend", "You volunteered to ride with me, {name}."],
+        ["You", "I was not properly informed."],
+        ["Friend", "There’s also going to be {food}."],
+        ["You", "Now I’m listening."],
+        ["Friend", "I knew that would get you."],
+        ["You", "Where are we staying?"],
+        ["Friend", "We’ll figure it out."],
+        ["You", "You are terrifyingly relaxed about this."],
+        ["Friend", "And yet you’re still coming."],
+        ["You", "Unfortunately, yes."],
+        ["Friend", "Excellent. See you Saturday, {name}."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     FAMILY DINNER
+     ========================================================== */
+
   {
     context: "An unexpectedly chaotic family dinner",
+
     variants: [
+
       [
         ["Relative", "{name}, you’re late."],
         ["You", "I’m not late. Dinner is early."],
@@ -640,7 +1233,7 @@ const scenarios = [
         ["Relative", "Someone forgot the bread, someone is arguing about music, and your {relative} is telling the same story again."],
         ["You", "Ah. So everything is normal."],
         ["Relative", "Exactly."],
-        ["You", "What are we eating?"],
+        ["You", "What are we eating, {name}?"],
         ["Relative", "{dish}."],
         ["You", "Okay, suddenly this is worth being here for."],
         ["Relative", "Be nice."],
@@ -652,8 +1245,9 @@ const scenarios = [
         ["Relative", "And no starting arguments."],
         ["You", "I make no promises."]
       ],
+
       [
-        ["Relative", "You made it!"],
+        ["Relative", "You made it, {name}!"],
         ["You", "Barely."],
         ["Relative", "What happened?"],
         ["You", "Long story."],
@@ -670,14 +1264,45 @@ const scenarios = [
         ["Relative", "We were going to eat without you."],
         ["You", "Heartless."],
         ["Relative", "Hungry."],
-        ["You", "Fair."]
+        ["You", "Fair."],
+        ["Relative", "Come sit down, {name}."]
+      ],
+
+      [
+        ["Relative", "There you are, {name}. We were starting without you."],
+        ["You", "I was only ten minutes late."],
+        ["Relative", "In family time, that’s practically tomorrow."],
+        ["You", "I’ll remember that."],
+        ["Relative", "Good. Help me carry this."],
+        ["You", "What is it?"],
+        ["Relative", "{dish}."],
+        ["You", "Oh. Suddenly I regret nothing."],
+        ["Relative", "You’re impossible."],
+        ["You", "You invited me."],
+        ["Relative", "I did."],
+        ["You", "Then this is partly your fault."],
+        ["Relative", "Fair point."],
+        ["You", "So who started the argument?"],
+        ["Relative", "Your {relative}."],
+        ["You", "Of course."],
+        ["Relative", "And please don’t encourage them, {name}."],
+        ["You", "I’m innocent."],
+        ["Relative", "That remains to be seen."]
       ]
+
     ]
   },
 
+
+  /* ==========================================================
+     NEW TEAM
+     ========================================================== */
+
   {
     context: "First day on a new team",
+
     variants: [
+
       [
         ["Coworker", "You must be {name}. Welcome."],
         ["You", "Thanks. I’m still trying to figure out where everything is."],
@@ -695,8 +1320,9 @@ const scenarios = [
         ["You", "That is not reassuring."],
         ["Coworker", "You’ll be fine, {name}."],
         ["You", "I’m choosing to believe you."],
-        ["Coworker", "Excellent. You’re already adapting."]
+        ["Coworker", "Excellent. You’re already adapting, {name}."]
       ],
+
       [
         ["Coworker", "Hey, {name}. I’m supposed to show you around."],
         ["You", "Perfect. I have approximately twelve questions."],
@@ -707,15 +1333,39 @@ const scenarios = [
         ["Coworker", "And why leave?"],
         ["You", "Mostly {reasonForJob}."],
         ["Coworker", "Fair."],
-        ["You", "Any rules I should know?"],
+        ["You", "Any rules I should know, {name}?"],
         ["Coworker", "Never touch {officeHazard}."],
         ["You", "You’re the second person to say that."],
         ["Coworker", "Then listen to the second person."],
         ["You", "Noted."],
         ["Coworker", "And come to the team lunch on {weekday}."],
         ["You", "That one I can handle."],
-        ["Coworker", "Great. You’re officially one of us."]
+        ["Coworker", "Great. You’re officially one of us, {name}."]
+      ],
+
+      [
+        ["Coworker", "Morning, {name}. Welcome to the team."],
+        ["You", "Thanks. I’m excited."],
+        ["Coworker", "Good. Excited is useful."],
+        ["You", "What should I know first?"],
+        ["Coworker", "Nobody understands the printer."],
+        ["You", "That seems universal."],
+        ["Coworker", "Correct."],
+        ["You", "And after that?"],
+        ["Coworker", "The people here are great. The calendar is not."],
+        ["You", "I’m sensing a theme."],
+        ["Coworker", "You catch on fast, {name}."],
+        ["You", "I try."],
+        ["Coworker", "What were you doing before this?"],
+        ["You", "{priorJob}."],
+        ["Coworker", "Nice. That’ll probably help."],
+        ["You", "Hopefully."],
+        ["Coworker", "You’ll be fine, {name}."],
+        ["You", "That’s what I keep hearing."],
+        ["Coworker", "Because it’s true."]
       ]
+
     ]
   }
+
 ];
