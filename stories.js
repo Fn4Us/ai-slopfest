@@ -551,7 +551,7 @@ const scenarios = [
         ["Coworker", "Come on, I’ll show you your desk."],
         ["You", "Before I get lost?"],
         ["Coworker", "Exactly before you get lost."],
-        ["You", "Thanks. So what’s the one thing I should know, {name}?"],
+        ["You", "Thanks. So what’s the one thing I should know?"],
         ["Coworker", "The calendar is lying to you."],
         ["You", "That’s ominous."],
         ["Coworker", "If something says thirty minutes, assume an hour."],
@@ -1004,7 +1004,7 @@ const scenarios = [
         ["Friend", "Excellent. Let’s go before either of us becomes sensible."],
         ["You", "Too late. I brought a jacket."],
         ["Friend", "Unbelievable."],
-        ["You", "You underestimate me, {name}."],
+        ["You", "You underestimate how prepared I am."],
         ["Friend", "I absolutely do not."]
       ],
 
@@ -1024,10 +1024,10 @@ const scenarios = [
         ["Friend", "As many as necessary."],
         ["You", "That is not a number."],
         ["Friend", "It is now."],
-        ["You", "Okay, {name}. Lead on."],
+        ["You", "Okay. Lead on."],
         ["Friend", "That’s the spirit."],
         ["You", "And if we get lost?"],
-        ["Friend", "We call it exploring."]
+        ["Friend", "We call it exploring, {name}."]
       ],
 
       [
@@ -1105,8 +1105,8 @@ const scenarios = [
         ["Date", "I could tell you now."],
         ["You", "Now?"],
         ["Date", "If we get coffee again."],
-        ["You", "I think I can make time for that, {name}."],
-        ["Date", "Good answer."]
+        ["You", "I think I can make time for that."],
+        ["Date", "Good answer. And I’m glad I met you, {name}."]
       ],
 
       [
@@ -1119,16 +1119,16 @@ const scenarios = [
         ["Date", "Careful, {name}. It’s only been ten minutes."],
         ["You", "Too late."],
         ["Date", "Fine. Your answer?"],
-        ["You", "Probably {hobby}."],
+        ["You", "{hobby}."],
         ["Date", "That’s honestly kind of adorable."],
         ["You", "Adorable? I’ll take it."],
-        ["Date", "What about you?"],
-        ["You", "I once got very invested in {newActivity}."],
-        ["Date", "You two might actually get along."],
-        ["You", "Who?"],
-        ["Date", "You and my terrible decision-making."],
-        ["You", "Okay, {name}, I think this is going pretty well."],
-        ["Date", "I think so too."]
+        ["Date", "What about me?"],
+        ["You", "I think you’re funny."],
+        ["Date", "That’s not an answer."],
+        ["You", "Okay, fine. I like your sense of humor."],
+        ["Date", "Good recovery, {name}."],
+        ["You", "I’m learning."],
+        ["Date", "I think this is going pretty well."]
       ]
 
     ]
@@ -1233,7 +1233,7 @@ const scenarios = [
         ["Relative", "Someone forgot the bread, someone is arguing about music, and your {relative} is telling the same story again."],
         ["You", "Ah. So everything is normal."],
         ["Relative", "Exactly."],
-        ["You", "What are we eating, {name}?"],
+        ["You", "What are we eating?"],
         ["Relative", "{dish}."],
         ["You", "Okay, suddenly this is worth being here for."],
         ["Relative", "Be nice."],
@@ -1333,7 +1333,7 @@ const scenarios = [
         ["Coworker", "And why leave?"],
         ["You", "Mostly {reasonForJob}."],
         ["Coworker", "Fair."],
-        ["You", "Any rules I should know, {name}?"],
+        ["You", "Any rules I should know?"],
         ["Coworker", "Never touch {officeHazard}."],
         ["You", "You’re the second person to say that."],
         ["Coworker", "Then listen to the second person."],
